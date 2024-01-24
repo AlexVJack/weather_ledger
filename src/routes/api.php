@@ -22,6 +22,7 @@ Route::put('/employees/{id}', [EmployeeController::class, 'update']);
 Route::delete('/employees/{id}', [EmployeeController::class, 'destroy']);
 Route::get('/employees/salary/highest', [EmployeeController::class, 'highestSalaryPerCountry']);
 Route::get('/employees/position/{position}', [EmployeeController::class, 'employeesByPosition']);
+Route::get('/geo', [EmployeeController::class, 'getCountry']);
 
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();

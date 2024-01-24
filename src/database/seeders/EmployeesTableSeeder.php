@@ -18,7 +18,7 @@ class EmployeesTableSeeder extends Seeder
             [
                 'name' => 'John Doe',
                 'age' => 28,
-                'country' => 'United Kingdom',
+                'country' => 'GB',
                 'email' => 'jhon@gmail.com',
                 'salary' => 3500.00,
                 'position' => 'Software Engineer',
@@ -28,7 +28,7 @@ class EmployeesTableSeeder extends Seeder
             [
                 'name' => 'Jane Doe',
                 'age' => 25,
-                'country' => 'United Kingdom',
+                'country' => 'GB',
                 'email' => 'jane@gmail.com',
                 'salary' => 3000.00,
                 'position' => 'Software Engineer',
@@ -38,7 +38,7 @@ class EmployeesTableSeeder extends Seeder
             [
                 'name' => 'Mark Doe',
                 'age' => 30,
-                'country' => 'United Kingdom',
+                'country' => 'GB',
                 'email' => 'mark@gmail.com',
                 'salary' => 4000.00,
                 'position' => 'Software Engineer',
@@ -49,7 +49,7 @@ class EmployeesTableSeeder extends Seeder
             [
                 'name' => 'Max Mustermann',
                 'age' => 28,
-                'country' => 'Germany',
+                'country' => 'DE',
                 'email' => 'max@gmail.com',
                 'salary' => 3500.00,
                 'position' => 'Software Engineer',
@@ -59,7 +59,7 @@ class EmployeesTableSeeder extends Seeder
             [
                 'name' => 'Erika Mustermann',
                 'age' => 25,
-                'country' => 'Germany',
+                'country' => 'DE',
                 'email' => 'erica@gmail.com',
                 'salary' => 3000.00,
                 'position' => 'Software Engineer',
@@ -69,7 +69,7 @@ class EmployeesTableSeeder extends Seeder
             [
                 'name' => 'Hans Mustermann',
                 'age' => 30,
-                'country' => 'Germany',
+                'country' => 'DE',
                 'email' => 'hans@gmail.com',
                 'salary' => 4000.00,
                 'position' => 'Software Engineer',

@@ -40,5 +40,11 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+        $this->reportable(function (ApiCallFailedException $e) {
+            //
+        });
+        $this->reportable(function (CoordinatesNotFoundException $e) {
+            //
+        });
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeCollection;
 use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
+use App\Services\WeatherService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -104,5 +105,20 @@ class EmployeeController extends Controller
     {
         $employees = Employee::where('position', $position)->get();
         return new EmployeeCollection($employees);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function getCountry(WeatherService $weatherService)
+    {
+        $data = $weatherService->getWeatherByCountry('DE');
+
+        dump($data);
+        die;
+
+        return [
+            'data' => $data
+        ];
     }
 }

@@ -6,7 +6,8 @@ This is a testing project for twnty.de
 - Docker
 - Docker-compose
 - Make
-Simple, right :)
+
+- It is simple, right? :)
 
 ## Installation
 Clone this repo
@@ -20,9 +21,3 @@ make run-app-with-setup-db
 make run-app-with-setup-db
 ```
 Yes, exactly two times. From the first attempt, the database may not be ready yet.
-
-Then jump into the container and run seeder for Employees
-```bash
-make enter-php-container
-php artisan db:seed --class=EmployeesTableSeeder
-```
