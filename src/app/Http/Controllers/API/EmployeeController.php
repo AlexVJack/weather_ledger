@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeCollection;
 use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
-use App\Services\WeatherService;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -40,17 +40,23 @@ class EmployeeController extends Controller
      */
     public function store(Request $request): EmployeeResource|JsonResponse
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'age' => 'required|integer|min:18|max:65',
-            'country' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:employees',
-            'salary' => 'required|numeric',
-            'position' => 'required|string|max:255'
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'age' => 'required|integer|min:18|max:65',
+                'country' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:employees',
+                'salary' => 'required|numeric',
+                'position' => 'required|string|max:255'
+            ]);
 
-        $employee = Employee::create($validatedData);
-        return new EmployeeResource($employee);
+            $employee = Employee::create($validatedData);
+            return new EmployeeResource($employee);
+        } catch (QueryException $e) {
+            return response()->json(['message' => 'There was an error processing your request'], 500);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An unexpected error occurred: ' . $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -83,6 +89,7 @@ class EmployeeController extends Controller
         try {
             $employee = Employee::findOrFail($id);
             $employee->delete();
+
             return response()->json(null, 204);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Employee not found'], 404);
@@ -105,20 +112,5 @@ class EmployeeController extends Controller
     {
         $employees = Employee::where('position', $position)->get();
         return new EmployeeCollection($employees);
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function getCountry(WeatherService $weatherService)
-    {
-        $data = $weatherService->getWeatherByCountry('DE');
-
-        dump($data);
-        die;
-
-        return [
-            'data' => $data
-        ];
     }
 }

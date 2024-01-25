@@ -1,95 +1,60 @@
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <h3 align="center">Docker Laravel MySQL Nginx Starter</h3>
+## Weather Ledger
 
-  <p align="center">
-    Project Starter For Web Application Development with Laravel, MySQL, Nginx, and Docker.
-    <br />
-  </p>
-</div>
+This is a testing project for twnty.de
 
-<div align="center">
+## Idea Description
+In the test task it is said to save the weather data in the database for every user. 
+To save the resources I have decided to save the weather data only for the countries.
+Then, when the user will get notification to see the weather advices for the country, 
+the app will send the last saved weather data for this country and advices for every user.
 
-  <a href="">[![Contributors][contributors-shield]][contributors-url]</a>
-  <a href="">[![Stargazers][stars-shield]][stars-url]</a>
-  <a href="">[![Issues][issues-shield]][issues-url]</a>
+This step allows to make much smaller amount of requests to the weather API and save the resources of the server.
 
-</div>
+Way to get a weather for the country:
+1. Get the country longitude and latitude by the country code
+2. Get the weather by the longitude and latitude
+3. Save the weather data in the database with the country code
 
-<!-- ABOUT THE PROJECT -->
-## Features
+I do understand that it is a "denormalized" way to save the data, but it is a good way to save the resources.
 
-* [Docker](https://www.docker.com/)
-* [Dockerfile with Alpine](https://hub.docker.com/_/alpine)
-* [Nginx](https://www.nginx.com)
-* [Laravel 10](https://laravel.com/)
-* [MySQL](https://www.mysql.com/)
-* [PHP 8.2](https://nodejs.org)
-* [Node](https://nodejs.org)
-* [NPM](https://www.npmjs.com)
-* [PHP Prettier](https://github.com/prettier/plugin-php)
-* [Github Action Check Code Format Using Prettier](https://github.com/ishaqadhel/docker-laravel-mysql-nginx-starter/actions)
+## Pre-requirements
+- Docker
+- Docker-compose
+- Make
 
-<!-- GETTING STARTED -->
-## Getting Started
+- It is simple, right? :)
 
-Follow the instruction below to setting up your project.
+## Installation
+Clone this repo
+```bash
+git clone https://github.com/AlexVJack/weather_ledger.git
+```
 
-### Prerequisites
+Install it
+```bash
+make run-app-with-setup-db
+make run-app-with-setup-db
+```
+Yes, exactly two times. From the first attempt, the database may not be ready yet.
+For details - check the Makefile
 
-- Download and Install [Docker](https://docs.docker.com/engine/install/)
+## Usage
+### Enter PHP container
+```bash
+make enter-php-container
+```
+### Get the weather for the countries
+```bash
+php artisan weather:update
+```
+### Send notifications to the users
+```bash
+php artisan weather:notify
+```
 
-### Clone This Template For Your Project
+## Postman collection
+check the file: weather_ledger.postman_collection.json
 
-- By Clicking Use This Template Button or You can Click [Here](https://github.com/ishaqadhel/docker-laravel-mysql-nginx-starter/generate)
-
-![image](https://user-images.githubusercontent.com/49280352/156305925-c7e3f2f2-c458-4b0b-ad1c-32fcaec50e1d.png)
-
-<!-- USAGE EXAMPLES -->
-## Run App With GNU Make (UNIX Based OS: MacOS, Linux)
-
-- `make run-app-with-setup` : build docker and start all docker container with laravel setup
-- `make run-app-with-setup-db` : build docker and start all docker container with laravel setup + database migration and seeder
-- `make run-app` : start all docker container
-- `make kill-app` : kill all docker container
-- `make enter-nginx-container` : enter docker nginx container
-- `make enter-php-container` : enter docker php container
-- `make enter-mysql-container` : enter docker mysql container
-- `make flush-db` : run php migrate fresh command
-- `make flush-db-with-seeding` : run php migrate fresh command with seeding
-
-
-<!-- USAGE EXAMPLES -->
-## Run App Manually
-
-![preview-docker-laravel](https://user-images.githubusercontent.com/49280352/131224609-401fcd2b-a815-49f2-8164-b6d9b77df87c.gif)
-
-- Create .env file for laravel environment from .env.example on src folder
-- Run command ```docker-compose build``` on your terminal
-- Run command ```docker-compose up -d``` on your terminal
-- Run command ```composer install``` on your terminal after went into php container on docker
-- Run command ```docker exec -it php /bin/sh``` on your terminal
-- Run command ```chmod -R 777 storage``` on your terminal after went into php container on docker
-- If app:key still empty on .env run ```php artisan key:generate``` on your terminal after went into php container on docker
-- To run artisan command like migrate, etc. go to php container using ```docker exec -it php /bin/sh```
-- Go to http://localhost:8001 or any port you set to open laravel
-
-**Note: if you got a permission error when running docker, try running it as an admin or use sudo in linux**
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/ishaqadhel/docker-laravel-mysql-nginx-starter.svg?style=for-the-badge
-[contributors-url]: https://github.com/ishaqadhel/docker-laravel-mysql-nginx-starter/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/ishaqadhel/docker-laravel-mysql-nginx-starter.svg?style=for-the-badge
-[forks-url]: https://github.com/ishaqadhel/docker-laravel-mysql-nginx-starter/network/members
-[stars-shield]: https://img.shields.io/github/stars/ishaqadhel/docker-laravel-mysql-nginx-starter.svg?style=for-the-badge
-[stars-url]: https://github.com/ishaqadhel/docker-laravel-mysql-nginx-starter/stargazers
-[issues-shield]: https://img.shields.io/github/issues/ishaqadhel/docker-laravel-mysql-nginx-starter.svg?style=for-the-badge
-[issues-url]: https://github.com/ishaqadhel/docker-laravel-mysql-nginx-starter/issues
-[license-shield]: https://img.shields.io/github/license/ishaqadhel/docker-laravel-mysql-nginx-starter.svg?style=for-the-badge
-[license-url]: https://github.com/ishaqadhel/docker-laravel-mysql-nginx-starter/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+Best regards,
+Alex
+:)

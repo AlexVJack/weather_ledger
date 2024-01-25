@@ -11,6 +11,15 @@ class Employee extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'country',
+        'email',
+        'age',
+        'salary',
+        'position',
+    ];
+
     // this can probably be rewritten to the simple and clear version if we will use Country model
     // for the speed question, I would probably use this, working solution
     public function scopeHighestSalaryPerCountry(Builder $query)
